@@ -1,61 +1,87 @@
 import React from "react";
-import nav_top_right_cart from "./cart";
+import { connect } from "react-redux";
+import { getAllItemFromCart } from "../data/reducers";
 
-
-export default class nav_top_left extends React.Component {
+export class NavTopLeft extends React.Component {
 	render() {
-		const className = "nav_top_left span7";
+		const className = "NavTopLeft span7";
 
 		return (
 			<div class={className}>
-				<ul><a id="men_link" href="/men">Men</a></ul>	
-				<ul><a id="women_link" href="/women">Women</a></ul>
+				<ul><a id="men-link" href="/men">Men</a></ul>	
+				<ul><a id="women-link" href="/women">Women</a></ul>
 			</div>
 		);
-	};
+	}
 }
 
-export default class nav_top_mid extends React.Component {
+export class NavTopMid extends React.Component {
 	render() {
-		const className = "nav_top_mid span2";
+		const className = "nav-top-mid span2";
 
 		return (
 			<div class={className}>
-				<a id="logo_home_text_link" href="/">G-Fashion</a>
+				<a id="logo-home-text-link" href="/">G-Fashion</a>
 			</div>
 		);
-	};
+	}
 
 }
-class nav_top_right_language extends React.Component {
+class NavTopRightLanguage extends React.Component {
 	state = {
-		isShown: false;
+		isShown: false
 	};
 	mouseEnterHandler = () => {this.setState({isShown : true})};
 	mouseLeaveHandler = () => {this.setState({isShown : false})};
 
 	render() {
-		className = "nava_top_right_language";
-		menu_className = "nava_top_right_menu" + this.state.isShown ? " show" : "";
-
-		<div class={className}><a id="nav_language" href="/en-us">English</a></div>
-		<div class={menu_className}>
-			<ul>
-				<li><a id="nav_menu_zh-cn" href="/zh-cn">中文</a></li>
-			</ul>
-		</div>
-	};
+		const className = "NavTopRightLanguage";
+		const menu_className = "NavTopRightMenu" + this.state.isShown ? " show" : "";
+		return (
+			<div>
+				<div class={className}><a id="nav_language" href="/en-us">English</a></div>
+				<div class={menu_className}>
+					<ul>
+						<li><a id="nav-menu-zh-cn" href="/zh-cn">中文</a></li>
+					</ul>
+				</div>
+			</div>
+		);
+	}
 }
 
-export default class nav_top_right extends React.Component {
+const navBarMapSateToProps = state => {
+	return {
+		totalItemNum: state.itemList.length
+	}
+};
+
+export class NavTopRightCart extends React.Component {
 	render() {
-		const className = "nava_top_right span7";
+		const text = "Shopping Cart (" + this.props.totalItemNum + ")";
+		return (
+			<div>
+				<a href="/cart">{text}</a>
+			</div>
+		);
+	}
+}
+
+
+const navBarCartDispatcher = dispatch => {
+	return { getAllItemFromCart : () => dispatch(getAllItemFromCart())};
+};
+
+export default connect(navBarMapSateToProps, navBarCartDispatcher)(NavTopRightCart);
+export  class NavTopRight extends React.Component {
+	render() {
+		const className = "nava-top-right span7";
 
 		return (
 			<div class={className}>
-				<ul><nav_top_right_language id="nav_language"/>/ul>
-				<ul><nav_top_right_cart/></ul>
+				<ul><NavTopRightLanguage id="nav-language"/></ul>
+				<ul><NavTopRightCart id="nav-top-cart"/></ul>
 			</div>
 		);
-	};
+	}
 }

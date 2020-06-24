@@ -1,17 +1,19 @@
 import React from "react";
 import Header from "./Header";
-import Main from "./Main";
-import Footer from "./Footer";
+//import Main from "./Main";
+//import Footer from "./Footer";
 import { Provider } from "react-redux";
+import { store } from "../data/store";
 
-class App extends React.Components {
+export class App extends React.Component {
   render() {
-    <Provider>
-      <div class="app_content">
-        <Header className="app_header"/>
-        <Main className="app_main">
-        <Footer className="app_footer">
-      </div>
-    </Provider>
-  };
+  	console.log(store.getState());
+  	return(
+	    <Provider store={store}>
+	      <div class="app_content">
+	        <Header className="app_header"/>
+	      </div>
+	    </Provider>
+	);
+  }
 }
