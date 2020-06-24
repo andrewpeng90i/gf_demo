@@ -29,17 +29,20 @@ export class NavTopMid extends React.Component {
 }
 class NavTopRightLanguage extends React.Component {
 	state = {
-		isShown: false
+		toShow: false
 	};
-	mouseEnterHandler = () => {this.setState({isShown : true})};
-	mouseLeaveHandler = () => {this.setState({isShown : false})};
+	mouseEnterHandler = () => {this.setState({toShow: true})};
+	mouseLeaveHandler = () => {this.setState({toShow: false})};
 
 	render() {
 		const className = "NavTopRightLanguage";
-		const menu_className = "NavTopRightMenu" + this.state.isShown ? " show" : "";
+		const menu_className = this.state.toShow ? "NavTopRightMenu show" : "NavTopRightMenu";
 		return (
 			<div>
-				<div class={className}><a id="nav_language" href="/en-us">English</a></div>
+				<div class={className} onMouseEnter={this.mouseEnterHandler.bind(this)} 
+						onMouseLeave={this.mouseLeaveHandler.bind(this)}>
+						<a id="nav_language" href="/en-us">English</a>
+				</div>
 				<div class={menu_className}>
 					<ul>
 						<li><a id="nav-menu-zh-cn" href="/zh-cn">中文</a></li>
