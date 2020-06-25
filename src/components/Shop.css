@@ -1,0 +1,16 @@
+.shop-ul-center {
+	list-style: none;
+	display: inline-block;
+	width: 100%;
+	margin: auto;
+}
+
+.shop-ul-center>li>a>img {
+	width: 190;
+	height: 255;
+}
+
+.shop-product-img {
+	width: 190;
+	height: 255;
+}

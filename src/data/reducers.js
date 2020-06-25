@@ -17,6 +17,7 @@ const defaultState = {
 			gender: "men",
 			category: "clothing",
 			type: "shirt",
+			size: ["S", "M"],
 			designer: "Maison Margiela",
 			designer_str: "Maison_Margiela",
 			price: 288,
@@ -33,13 +34,14 @@ const defaultState = {
 			gender: "men",
 			category: "bags",
 			type: "tote",
+			size: ["XL", "XXL"],
 			designer: "A.P.C.",
 			designer_str: "A_P_C",
 			price: 310,
 			name: "Indigo Denim Axelle Tote",
 			name_str: "Indigo_Denim_Axelle_Tote",
 			id: "202252M172083",
-			images: [ "/images/m_bag_1.jpg", "/images/res/m_bag_2.jpg"],
+			images: [ "/images/m_bag_1.jpg", "/images/m_bag_2.jpg"],
 			description: "Japanese denim tote in indigo. Twin carry handles at top. \
 						Logo printed in white at face. Buffed calfskin trim in black at base. \
 						Textile logo patch and zippered pocket at interior. Unlined. Contrast stitching in tan. \
@@ -50,13 +52,14 @@ const defaultState = {
 			gender: "women",
 			category: "clothing",
 			type: "shirt",
+			size: ["M", "L"],
 			designer: "Loewe",
 			designer_str: "Loewe",
 			price: 790,
 			name: "Blue & White Striped Oversized Leaning Shirt", 
 			name_str: "Blue_and_White_Striped_Oversized_Leaning_Shirt",
 			id: "201677F109213",
-			images: [ "/images/f_shirt_1.jpg", "/images/res/f_shirt_2.jpg"],
+			images: [ "/images/f_shirt_1.jpg", "/images/f_shirt_2.jpg"],
 			description: "Long sleeve panelled lightweight cotton poplin shirt featuring alternating stripes in tones \
 						of blue and white. White poplin panelling throughout. Asymmetric tuxedo wing collar and panelling \
 						at front. Button closure at front. Mother-of-pearl hardware. Supplier color: Baby blue/White \
@@ -94,9 +97,16 @@ const defaultState = {
 	}
 };
 
-export const addItemToCart = (series, type, size, id, price, imgsrc) => ({
+export const addItemToCart = (p_designer, p_name, p_size, p_id, p_price, p_imgsrc) => ({
 							type: CART_ADD_ITEM,
-							payload: {series, type, size, id, price, imgsrc}
+							payload: {
+								designer: p_designer, 
+								name: p_name, 
+								size: p_size, 
+								id: p_id, 
+								price: p_price, 
+								imgsrc: p_imgsrc
+							}
 });
 
 export const removeItemFromCart = idx => ({
@@ -104,9 +114,16 @@ export const removeItemFromCart = idx => ({
 							payload: idx
 });
 
-export const updateCurrentBrowsingItem = ({series = "", type = "", size="", id="", price="", imgsrc=""} = {}) => ({
+export const updateCurrentBrowsingItem = (p_designer, p_name, p_size, p_id, p_price, p_imgsrc) => ({
 							type: CART_UPDATE_CURRENT_ITEM,
-							payload: {series, type, size, id, price, imgsrc}
+							payload: {
+								designer: p_designer, 
+								name: p_name, 
+								size: p_size, 
+								id: p_id, 
+								price: p_price, 
+								imgsrc: p_imgsrc
+							}
 });
 
 export const getAllItemFromCart = () => ({

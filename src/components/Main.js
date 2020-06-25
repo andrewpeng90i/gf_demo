@@ -13,7 +13,7 @@ export default class Main extends React.Component {
 		const gender = this.props.match.params.gender
 		const product = this.props.match.params.product
 		const designer = this.props.match.params.designer;
-		const productName = this.props.match.params.type;
+		const productName = this.props.match.params.name;
 		const productId = this.props.match.params.id;
 
 		console.log(pathname, designer, productName, productId);

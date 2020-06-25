@@ -1,6 +1,7 @@
 import React from "react";
 import { store } from "../data/store";
 import { Link } from "react-router-dom";
+import "./Shop.css";
 
 export class Shop extends React.Component {
 	constructor(props) {
@@ -51,13 +52,13 @@ export class Shop extends React.Component {
 						"/" + value.name_str + "/" + value.id;
 			console.log(value.images[0]);
 			//const src_rq = require(value.images[0]);
-			items.push(<li><Link to={url}><img src={value.images[0]} alt={value.name} with="190" height="255" /></Link></li>);
+			items.push(<li><Link to={url}><img src={value.images[0]} alt={value.name} width="190" height="255"/></Link></li>);
 			//items.push(<li><Link to={url}>{value.name}</Link></li>);
 		}
 		console.log(items);
 		return(
 			<div class="shop-Container">
-				<ul>
+				<ul class="shop-ul-center">
 					{items}
 				</ul>
 			</div>

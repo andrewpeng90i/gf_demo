@@ -33,7 +33,7 @@ export class App extends React.Component {
 		        <Route exact path="/men" component={Main} />
 		        <Route exact path="/women" component={Main} />
 		        <Route exact path="/:gender/:prodcut/:designer" component={Main} />
-		        <Route exact path="/:gender/:product/:designer/:productName/:productId" component={Main} />		        
+		        <Route exact path="/:gender/:product/:designer/:name/:id" component={Main} />		        
 
 		    </DebugRouter>
 	      </div>

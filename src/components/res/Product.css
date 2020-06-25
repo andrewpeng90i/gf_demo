@@ -1,0 +1,16 @@
+.product-ul-33-33-33 {
+	width: 100%;
+	list-style: none;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.product-li-33 {
+	width: 33%;
+	text-align: center;
+}
+
+.product-image-ul {
+	list-style: none;
+	display: block;
+}
