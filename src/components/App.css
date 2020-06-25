@@ -1,6 +1,102 @@
-.component-app {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 100%;
+.app-content {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	height: 100%;
+}
+
+.app-header {
+	position:fixed;
+	width:100%;
+	top:0;
+	left:0;
+	min-height:55px;
+	text-transform:uppercase;
+	z-index:10;
+}
+.app-header a {
+	font-weight:500;
+	white-space:nowrap;
+	cursor:pointer;
+}
+.app-header a.active {
+	background-image:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.75) 0);
+	background-repeat:repeat-x;
+	background-size:2px 2px;
+	background-position:0 1.1em
+}
+
+.hide {
+ display:none!important
+}
+.show {
+ display:block
+}
+
+body {
+	 font-family:plain,Helvetica Neue,Helvetica,Arial,sans-serif;
+	 font-weight:400;
+	 color:#000;
+	 font-size:11px;
+	 line-height:15px;
+	 background-color:#fff;
+	 text-rendering:optimizeLegibility
+}
+a {
+ color:#000;
+ text-decoration:none;
+ outline:0
+}
+a:hover {
+ background-image:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.75) 0);
+ background-repeat:repeat-x;
+ background-size:2px 2px;
+ background-position:0 1.1em
+}
+[data-lang=ja] a:hover {
+ background-position:0 1em
+}
+a:active,
+a:focus,
+a:visited {
+ text-decoration:none
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ margin:10px 0;
+ color:inherit;
+ text-rendering:optimizelegibility;
+ font-size:15px;
+ line-height:20px;
+ font-weight:400
+}
+hr {
+ margin:20px 0;
+ border:0;
+ border-top:1px solid #777;
+ border-bottom:1px solid #fff
+}
+p {
+ font-size:11px;
+ line-height:15px;
+ font-weight:400;
+ margin:0
+}
+ol,
+ul {
+ padding:0;
+ margin:0 0 7.5px 25px
+}
+ol ol,
+ol ul,
+ul ol,
+ul ul {
+ margin-bottom:0
+}
+li {
+ line-height:15px
 }

@@ -1,28 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllItemFromCart } from "../data/reducers";
+import "./NavBar.css";
 
 export class NavTopLeft extends React.Component {
 	render() {
-		const className = "NavTopLeft span7";
+		//const className = "NavTopLeft span7";
 
 		return (
-			<div class={className}>
-				<ul><a id="men-link" href="/men">Men</a></ul>	
-				<ul><a id="women-link" href="/women">Women</a></ul>
-			</div>
+			<ul class="nav-ul-row">
+				<li><a id="nav-men-link" href="/men">Men</a></li>
+				<li><a id="nav-women-link" href="/women">Women</a></li>
+			</ul>
 		);
 	}
 }
 
 export class NavTopMid extends React.Component {
 	render() {
-		const className = "nav-top-mid span2";
+		//const className = "nav-top-mid span2";
 
 		return (
-			<div class={className}>
-				<a id="logo-home-text-link" href="/">G-Fashion</a>
-			</div>
+				<a class="nav-logo" href="gfashion.com">
+					<img class="nav-logo" id="nav-logo-link" 
+						src="https://pbs.twimg.com/media/EaaaEB-U4AAVrYd?format=jpg&name=medium" 
+						alt="GFashion" />
+				</a>
 		);
 	}
 
@@ -35,20 +38,19 @@ class NavTopRightLanguage extends React.Component {
 	mouseLeaveHandler = () => {this.setState({toShow: false})};
 
 	render() {
-		const className = "NavTopRightLanguage";
-		const menu_className = this.state.toShow ? "NavTopRightMenu show" : "NavTopRightMenu";
+		//const className = "header-nav-language";
+		const menu_className = this.state.toShow ? "header-nav-lan-menu show" : "header-nav-lan-menu hide";
 		return (
-			<div>
-				<div class={className} onMouseEnter={this.mouseEnterHandler.bind(this)} 
-						onMouseLeave={this.mouseLeaveHandler.bind(this)}>
-						<a id="nav_language" href="/en-us">English</a>
-				</div>
-				<div class={menu_className}>
-					<ul>
+				<ul class="nav-ul-lan-col">
+						<li onMouseEnter={this.mouseEnterHandler.bind(this)} 
+							onMouseLeave={this.mouseLeaveHandler.bind(this)}>
+							<a id="nav_language" href="/en-us">English</a>
+						</li>
+					<div class={menu_className} onMouseEnter={this.mouseEnterHandler.bind(this)} 
+												onMouseLeave={this.mouseLeaveHandler.bind(this)}>
 						<li><a id="nav-menu-zh-cn" href="/zh-cn">中文</a></li>
-					</ul>
-				</div>
-			</div>
+					</div>
+				</ul>
 		);
 	}
 }
@@ -63,9 +65,7 @@ export class NavTopRightCart extends React.Component {
 	render() {
 		const text = "Shopping Cart (" + this.props.totalItemNum + ")";
 		return (
-			<div>
 				<a href="/cart">{text}</a>
-			</div>
 		);
 	}
 }
@@ -76,15 +76,16 @@ const navBarCartDispatcher = dispatch => {
 };
 
 export default connect(navBarMapSateToProps, navBarCartDispatcher)(NavTopRightCart);
+
 export  class NavTopRight extends React.Component {
 	render() {
-		const className = "nava-top-right span7";
+		//const className = "header-nav-right span7";
 
 		return (
-			<div class={className}>
-				<ul><NavTopRightLanguage id="nav-language"/></ul>
-				<ul><NavTopRightCart id="nav-top-cart"/></ul>
-			</div>
+			<ul class="nav-ul-row">
+				<li><NavTopRightLanguage class="header-nav-language"/></li>
+				<li><NavTopRightCart class="header-nav-cart"/></li>
+			</ul>	
 		);
 	}
 }
