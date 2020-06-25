@@ -67,3 +67,11 @@
   flex-direction:row
  }
 }
+.home-shop-row-ul-50-50 {
+  list-style: none;
+  display: inline-block;
+}
+.home-article-row-50-50 {
+  list-style: none;
+  display: inline-block;
+}

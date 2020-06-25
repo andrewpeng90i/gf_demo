@@ -17,8 +17,8 @@ export class Home extends React.Component {
 
 				<div class="home-article-row-50-50">
 					<ul>
-						<li><Link to="/en-us"><img src={"./res/home_article_1.jpg"} alt="BLM"/></Link></li>
-						<li><Link to="/en-us"><img src={"./res/home_article_2.jpg"} alt="Fashion"/></Link></li>
+						<li><Link to="/en-us"><img src={"/images/home_article_1.jpg"} alt="BLM"/></Link></li>
+						<li><Link to="/en-us"><img src={"/images/home_article_2.jpg"} alt="Fashion"/></Link></li>
 					</ul>
 				</div>
 			</div>
