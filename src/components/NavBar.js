@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { getAllItemFromCart } from "../data/reducers";
 import { Link } from "react-router-dom";
+import { store } from "../data/store";
+
 import "./NavBar.css";
 
 export class NavTopLeft extends React.Component {
@@ -22,8 +24,8 @@ export class NavTopMid extends React.Component {
 		//const className = "nav-top-mid span2";
 
 		return (
-				<Link class="nav-logo" href="/App">
-					<img class="nav-logo" id="nav-logo-link" src={require("./res/gf_logo.jpg")} alt="GFashion" />
+				<Link class="nav-logo" to="/en-us">
+					<img class="nav-logo" id="nav-logo-link" src={"/images/gf_logo.jpg"} alt="GFashion" />
 				</Link>
 		);
 	}
@@ -54,27 +56,16 @@ class NavTopRightLanguage extends React.Component {
 	}
 }
 
-const navBarMapSateToProps = state => {
-	return {
-		totalItemNum: state.itemList.length
-	}
-};
-
 export class NavTopRightCart extends React.Component {
 	render() {
-		const text = "Shopping Cart (" + this.props.totalItemNum + ")";
+		const itemList = store.getState().cartReducer.cart.cartItemList;
+		
+		const text = "Shopping Cart (" + itemList.length + ")";
 		return (
 				<Link to="/cart">{text}</Link>
 		);
 	}
 }
-
-
-const navBarCartDispatcher = dispatch => {
-	return { getAllItemFromCart : () => dispatch(getAllItemFromCart())};
-};
-
-export default connect(navBarMapSateToProps, navBarCartDispatcher)(NavTopRightCart);
 
 export  class NavTopRight extends React.Component {
 	render() {
