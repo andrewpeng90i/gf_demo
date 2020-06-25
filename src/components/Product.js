@@ -31,7 +31,7 @@ export class Product extends React.Component {
 	}
 
 	onChooseSizeChangeHandler = (e) => {
-		this.setState(...this.state, {selectedSize: this.state.sizes[e.target.value]});
+		this.setState({selectedSize: this.state.sizes[e.target.value]});
 	};
 
 	onAddToCartClickHandler = () => {
