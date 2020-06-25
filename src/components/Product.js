@@ -8,8 +8,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-	onClick : () => dispatch(addItemToCart(this.state.name, this.state.name, this.state.selectedSize, 
-											this.state.id, this.state.price, this.state.images[0]))
+	onAddToCartClickHandler : () => dispatch(addItemToCart(this.state.name, this.state.name, 
+															this.state.selectedSize, this.state.id, 
+															this.state.price, this.state.images[0]))
 });
 
 export class Product extends React.Component {
@@ -25,18 +26,18 @@ export class Product extends React.Component {
 			price: 0,
 			selectedSize: ""
 		};
-		this.onChangeHandler = this.onChangeHandler.bind(this);
-		this.onClickHandler = this.onClickHandler.bind(this);
+		this.onChooseSizeChangeHandler = this.onChooseSizeChangeHandler.bind(this);
+		this.onAddToCartClickHandler = this.onAddToCartClickHandler.bind(this);
 	}
 
-	onChangeHandler = (e) => {
+	onChooseSizeChangeHandler = (e) => {
 		this.setState(...this.state, {selectedSize: this.state.sizes[e.target.value]});
 	};
 
-	onClickHandler = () => {
+	onAddToCartClickHandler = () => {
 
 	};
-	updateProduct() {
+	updateProductState() {
 		const params = {
 			name_str: this.props.name,
 			designer_str: this.props.designer,
@@ -76,7 +77,7 @@ export class Product extends React.Component {
 		this.setState(newState);
 	};
 	componentWillMount() {
-		this.updateProduct();
+		this.updateProductState();
 	};
 
 	render() {
@@ -99,13 +100,14 @@ export class Product extends React.Component {
 					<li class="product-li-33">
 						<p> Price: {this.state.price} </p>
 						<p>
-							<select class="prodcut-size-select" onChange={this.onChangeHandler} 
+							<select class="prodcut-size-select" onChange={this.onChooseSizeChangeHandler} 
 																value={this.state.selectedSize}>
 								{this.state.sizes.map((size, idx) => <option value={size}>{size}</option>)}
 							</select>
 						</p>
 						<p>
-							<button class="prodcut-add-to-cart" onClick={this.onClickHandler}> Add to cart</button>
+							<button class="prodcut-add-to-cart" onClick={this.onAddToCartClickHandler}> 
+																Add to cart</button>
 						</p>
 					</li>
 				</ul>
