@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getAllItemFromCart } from "../data/reducers";
+import { Link } from "react-router-dom";
 import "./NavBar.css";
 
 export class NavTopLeft extends React.Component {
@@ -9,8 +10,8 @@ export class NavTopLeft extends React.Component {
 
 		return (
 			<ul class="nav-ul-row">
-				<li><a id="nav-men-link" href="/men">Men</a></li>
-				<li><a id="nav-women-link" href="/women">Women</a></li>
+				<li><Link id="nav-men-link" to="/men">Men</Link></li>
+				<li><Link id="nav-women-link" to="/women">Women</Link></li>
 			</ul>
 		);
 	}
@@ -21,9 +22,9 @@ export class NavTopMid extends React.Component {
 		//const className = "nav-top-mid span2";
 
 		return (
-				<a class="nav-logo" href="/App">
+				<Link class="nav-logo" href="/App">
 					<img class="nav-logo" id="nav-logo-link" src={require("./res/gf_logo.jpg")} alt="GFashion" />
-				</a>
+				</Link>
 		);
 	}
 
@@ -42,11 +43,11 @@ class NavTopRightLanguage extends React.Component {
 				<ul class="nav-ul-lan-col">
 						<li onMouseEnter={this.mouseEnterHandler.bind(this)} 
 							onMouseLeave={this.mouseLeaveHandler.bind(this)}>
-							<a id="nav_language" href="/en-us">English</a>
+							<Link id="nav_language" to="/en-us">English</Link>
 						</li>
 					<div class={menu_className} onMouseEnter={this.mouseEnterHandler.bind(this)} 
 												onMouseLeave={this.mouseLeaveHandler.bind(this)}>
-						<li><a id="nav-menu-zh-cn" href="/zh-cn">中文</a></li>
+						<li><Link id="nav-menu-zh-cn" to="/zh-cn">中文</Link></li>
 					</div>
 				</ul>
 		);
@@ -63,7 +64,7 @@ export class NavTopRightCart extends React.Component {
 	render() {
 		const text = "Shopping Cart (" + this.props.totalItemNum + ")";
 		return (
-				<a href="/cart">{text}</a>
+				<Link to="/cart">{text}</Link>
 		);
 	}
 }
