@@ -21,10 +21,8 @@ export class NavTopMid extends React.Component {
 		//const className = "nav-top-mid span2";
 
 		return (
-				<a class="nav-logo" href="gfashion.com">
-					<img class="nav-logo" id="nav-logo-link" 
-						src="https://pbs.twimg.com/media/EaaaEB-U4AAVrYd?format=jpg&name=medium" 
-						alt="GFashion" />
+				<a class="nav-logo" href="/App">
+					<img class="nav-logo" id="nav-logo-link" src={require("./res/gf_logo.jpg")} alt="GFashion" />
 				</a>
 		);
 	}

@@ -35,7 +35,7 @@ const defaultState = {
 		cartItemList: [],
 
 		curItem: {
-			series: "",
+			designer: "",
 			type: "",
 			size: "",
 			id: "",
