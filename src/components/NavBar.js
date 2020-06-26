@@ -58,7 +58,7 @@ class NavTopRightLanguage extends React.Component {
 
 export class NavTopRightCart extends React.Component {
 	render() {
-		const itemList = store.getState().cartReducer.cart.cartItemList;
+		const itemList = store.getState().cartReducer.cartItemList;
 		
 		const text = "Shopping Cart (" + itemList.length + ")";
 		return (

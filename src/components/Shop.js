@@ -3,7 +3,7 @@ import { store } from "../data/store";
 import { Link } from "react-router-dom";
 import "./Shop.css";
 
-export class Shop extends React.Component {
+export default class Shop extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -23,7 +23,7 @@ export class Shop extends React.Component {
 				name: this.props.name
 			};
 		//console.log(params.gender, params.designer, params.category, params.name);
-		const stateProductList = store.getState().productReducer.products.allItemList;
+		const stateProductList = store.getState().productReducer.allItemList;
 		const filter = {};
 		for(const key in params)
 			if(params[key] !== '')

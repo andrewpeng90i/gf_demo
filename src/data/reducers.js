@@ -97,7 +97,9 @@ const defaultState = {
 	}
 };
 
-export const addItemToCart = (p_designer, p_name, p_size, p_id, p_price, p_imgsrc) => ({
+export const addItemToCart = (p_designer, p_name, p_size, p_id, p_price, p_imgsrc, p_url) => {
+						//console.log("addItemToCart");
+						return ({
 							type: CART_ADD_ITEM,
 							payload: {
 								designer: p_designer, 
@@ -105,9 +107,11 @@ export const addItemToCart = (p_designer, p_name, p_size, p_id, p_price, p_imgsr
 								size: p_size, 
 								id: p_id, 
 								price: p_price, 
-								imgsrc: p_imgsrc
+								imgsrc: p_imgsrc,
+								url: p_url
 							}
-});
+						})
+};
 
 export const removeItemFromCart = idx => ({
 							type: CART_ADD_ITEM,
@@ -142,8 +146,8 @@ export const getProducts = (p_gender, p_designer, p_category, p_type, p_id) => (
 							}
 });
 
-export const productReducer = (state = defaultState, action) => {
-	console.log(action.type, action.payload);
+export const productReducer = (state = defaultState.products, action) => {
+	//console.log(action.type, action.payload);
 	switch(action.type) {
 		case MAIN_GET_ALL_PRODUCTS:
 			const filter = {};
@@ -152,7 +156,7 @@ export const productReducer = (state = defaultState, action) => {
 					filter[key] = action.payload[key];
 
 			return Object.assign({}, state, {
-				products: state.products.allItemList.filter((filter, item) => {
+				allItemList: state.products.allItemList.filter((filter, item) => {
 					for (const key in filter) {
 						if(item[key] === undefined || filter[key] !== item[key])
 							return false;
@@ -164,12 +168,15 @@ export const productReducer = (state = defaultState, action) => {
 	}
 };
 
-export const cartReducer = (state = defaultState, action) => {
+export const cartReducer = (state = defaultState.cart, action) => {
+	console.log(action.type, action.payload);
 	switch(action.type){
 		case CART_ADD_ITEM:
-			return Object.assign({}, state, {
+			const newState = Object.assign({}, state, {
 				cartItemList: state.cartItemList.concat(action.payload)
 			});
+			console.log(newState);
+			return newState;
 
 		case CART_DEL_ITEM:
 			return Object.assign({}, state, {
@@ -188,7 +195,7 @@ export const cartReducer = (state = defaultState, action) => {
 	}
 };
 
-export const userReducer = (state = defaultState, action) => {
+export const userReducer = (state = defaultState.user, action) => {
 	switch(action.type) {
 		default: return state;
 	}

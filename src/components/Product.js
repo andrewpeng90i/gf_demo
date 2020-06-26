@@ -7,11 +7,12 @@ const mapStateToProps = state => {
 	return {}
 };
 
-const mapDispatchToProps = dispatch => ({
-	onAddToCartClickHandler : () => dispatch(addItemToCart(this.state.name, this.state.name, 
-															this.state.selectedSize, this.state.id, 
-															this.state.price, this.state.images[0]))
-});
+const mapDispatchToProps = dispatch => {
+	return {
+		addToCart : (designer, name, ss, id, price, image, url) => dispatch(addItemToCart(designer, name, ss, 
+																						id, price, image, url))
+	}
+};
 
 export class Product extends React.Component {
 	constructor(props) {
@@ -24,19 +25,29 @@ export class Product extends React.Component {
 			images: [],
 			id:"",
 			price: 0,
-			selectedSize: ""
+			selectedSize: "",
+			url: ""
 		};
 		this.onChooseSizeChangeHandler = this.onChooseSizeChangeHandler.bind(this);
 		this.onAddToCartClickHandler = this.onAddToCartClickHandler.bind(this);
+		//this.addToCart = this.addToCart.bind(this);
+		
+		//console.log(this.props.addToCart);
 	}
 
 	onChooseSizeChangeHandler = (e) => {
-		this.setState({selectedSize: this.state.sizes[e.target.value]});
+		this.setState({selectedSize: e.target.value});
 	};
 
-	onAddToCartClickHandler = () => {
-
+	onAddToCartClickHandler = (e) => {
+		//console.log(this.props);
+		console.log(this.state);
+		e.preventDefault();
+		this.props.addToCart(this.state.designer, this.state.name, this.state.selectedSize,
+							this.state.id, this.state.price, this.state.images[0], this.state.url);
 	};
+
+	
 	updateProductState() {
 		const params = {
 			name_str: this.props.name,
@@ -45,7 +56,7 @@ export class Product extends React.Component {
 		};
 
 		//console.log(params);
-		const stateProductList = store.getState().productReducer.products.allItemList;
+		const stateProductList = store.getState().productReducer.allItemList;
 		const newState = {};
 		const filter = {};
 
@@ -64,7 +75,7 @@ export class Product extends React.Component {
 											});
 		product = product[0];
 
-		console.log(product);
+		//console.log(product);
 		newState["name"] = product["name"];
 		newState["designer"] = product["designer"];
 		newState["sizes"] = product["size"];
@@ -72,7 +83,9 @@ export class Product extends React.Component {
 		newState["images"] = product["images"];
 		newState["price"] = product["price"];
 		newState["id"] = product["id"];
-		newState["selectedSize"] = "";
+		newState["selectedSize"] = product["size"][0];
+		newState["url"] = "/" + product["gender"] + "/prodcut/" + product["designer_str"] + "/" +
+							product["name_str"] + "/" + product["id"]; 
 
 		this.setState(newState);
 	};
@@ -106,8 +119,7 @@ export class Product extends React.Component {
 							</select>
 						</p>
 						<p>
-							<button class="prodcut-add-to-cart" onClick={this.onAddToCartClickHandler}> 
-																Add to cart</button>
+							<button onClick={this.onAddToCartClickHandler}> Add To Cart</button> 
 						</p>
 					</li>
 				</ul>
@@ -116,5 +128,6 @@ export class Product extends React.Component {
 	}
 }
 
-export default connect(null, mapDispatchToProps)(Product)
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
+
 

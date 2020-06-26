@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Home.css";
 
 
-export class Home extends React.Component {
+export default class Home extends React.Component {
 	render(){
 		console.log("reandering Home");
 		return (

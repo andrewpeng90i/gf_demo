@@ -5,79 +5,61 @@ import { removeItemFromCart } from "../data/reducers"
 import { Link } from "react-router-dom";
 
 const mapStateToProps = state => {
-	return (this.setState({
-		cartItemList: state.cartReducer.cart.cartItemList,
-		totalPrice: state.cartReducer.cart.cartItemList.reduce((res, item) => res + item["price"]),
-		totalItem: state.cartReducer.cart.cartItemList.length
-	}));
+	return {
+		cartItemList: state.cartReducer.cartItemList
+	};
 };
 const mapDispatchtoProps = dispatch => ({
-	onRemoveFromCartClickHandler: (index) => dispatch(removeItemFromCart(index))
+	removeFromCart: (index) => dispatch(removeItemFromCart(index))
 });
 
 export class Cart extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			cartItemList: [],
-			totalPrice: 0,
-			totalItem: 0
-		};
-
 		this.onRemoveFromCartClickHandler = this.onRemoveFromCartClickHandler.bind(this);
 	}
-	onRemoveFromCartClickHandler() {
-
+	onRemoveFromCartClickHandler = index => {
+		this.props.removeFromCart(index);
+		//this.getCartStateFromStore();
 	};
-	getCartStateFromStore() {
-		const newCartItemList = store.getState().cartReducer.cart.cartItemList;
-		const newTotalItem = newCartItemList.length;
-		var newTotalPrice = 0;
 
-		if (newTotalItem !== 0)
-			newTotalPrice = newCartItemList.reduce((res, item) => res + item["price"]);
-		
-
-		this.setState({
-			cartItemList: newCartItemList,
-			totalPrice: newTotalPrice,
-			totalItem: newTotalItem
-		});
-	};
-	componentWillMount() {
-		this.getCartStateFromStore();
-	}
 	render() {
+		const items = [];
+		var totalPrice = 0;
+		const totalItem = this.props.cartItemList.length;
+	
+		for(var index = 0; index < totalItem; index++)
+		{
+			var value = {};
+			for(const key in this.props.cartItemList[index])
+				value[key] = this.props.cartItemList[index][key];
+			
+			//console.log(value);
+			totalPrice += value.price;
+			items.push(<li>
+							<ul class="cart-item-ul-row" display="inline" list-stype="none">
+								<li><Link to={value.url}><img with="50" height="80" src={value.imgsrc} alt={value.imgsrc} /></Link></li>
+								<li><p>{value.designer}</p><p>{value.name}</p><p>{value.id}</p></li>
+								<li>
+									<p>{value.price}</p>
+									<p><button onClick={this.onRemoveFromCartClickHandler}>Rmove from Cart</button></p>
+								</li>
+							</ul>
+						</li>);
+			//items.push(<li><Link to={url}>{value.name}</Link></li>);
+		}
+
 		return (
+
 			<div class="cart-Container">
 				<ul class="cart-ul-center-col">
-					<p> <h4> Cart </h4></p>
-					{this.state.cartItemList.map((item, index) => {
-						return (		
-							<li>
-								<ul class="cart-item-ul-row" display="inline" list-stype="none">
-									<li><Link><img src={item.image} alt={item.image}/></Link></li>
-									<li>
-										<p> {item.designer} </p>
-										<p> {item.name} </p>
-										<p> {item.id} </p>
-									</li>
-									<li>
-										<p> {item.price} </p>
-										<p>
-											<button onClick={this.onRemoveFromCartClickHandler({index})}>Rmove from Cart</button>
-										</p>
-									</li>
-								</ul>
-							</li>
-						);	
-					})}
-					<p> {this.state.totalItem} Items </p>
-					<p> <h4>TOTAL: {this.state.totalPrice}</h4></p>
+					{items}
+					<p> {totalItem} Item(s) </p>
+					<h4>TOTAL: ${totalPrice}</h4>
 				</ul>				
 			</div>
 		);
 	}
 }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(Cart)
+export default connect(mapStateToProps, mapDispatchtoProps)(Cart);

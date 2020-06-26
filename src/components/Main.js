@@ -1,8 +1,8 @@
 import React from "react";
-import { Shop } from "./Shop";
-import { Cart } from "./Cart";
-import { Product } from "./Product";
-import { Home } from "./Home";
+import Shop from "./Shop";
+import Cart from "./Cart";
+import Product from "./Product";
+import Home from "./Home";
 
 export default class Main extends React.Component {
 
@@ -71,7 +71,7 @@ export default class Main extends React.Component {
 			return (
 				<div class="main-container">
 					<Product class={className} gender={gender} product={product} designer={designer} 
-												name={productName} id={productId} />
+												name={productName} id={productId} / >
 				</div>
 			);
 		}
