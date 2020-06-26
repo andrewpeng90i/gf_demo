@@ -1,5 +1,5 @@
 import React from "react";
-import { NavTopLeft, NavTopMid, NavTopRight } from "./NavBar"
+import NavTopRight, { NavTopLeft, NavTopMid } from "./NavBar"
 import "./Header.css";
 
 export default class Header extends React.Component {
@@ -13,7 +13,7 @@ export default class Header extends React.Component {
 					<NavTopMid class="header-nav-mid" />
 				</div>
 				<div class="header-right header-row span7">
-					<NavTopRight class="header-nav-right" />
+					<NavTopRight class="header-nav-right"/>
 				</div>
 			</div>
 		);

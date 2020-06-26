@@ -56,26 +56,34 @@ class NavTopRightLanguage extends React.Component {
 	}
 }
 
-export class NavTopRightCart extends React.Component {
+class NavTopRightCart extends React.Component {
 	render() {
-		const itemList = store.getState().cartReducer.cartItemList;
-		
-		const text = "Shopping Cart (" + itemList.length + ")";
+		const num = this.props.itemNum;
+		const text = "Shopping Cart (" + num + ")";
 		return (
 				<Link to="/cart">{text}</Link>
 		);
 	}
 }
 
-export  class NavTopRight extends React.Component {
+const mapStateToProps = state => {
+	return {
+		cartItemList: state.cartReducer.cartItemList
+	}
+};
+
+export class NavTopRight extends React.Component {
 	render() {
 		//const className = "header-nav-right span7";
-
+		const itemNum = this.props.cartItemList.length;
+		//console.log("== NavBar ==", this.props.cartItemList, itemNum);
 		return (
 			<ul class="nav-ul-row">
 				<li><NavTopRightLanguage class="header-nav-language"/></li>
-				<li><NavTopRightCart class="header-nav-cart"/></li>
+				<li><NavTopRightCart class="header-nav-cart" itemNum={itemNum}/></li>
 			</ul>	
 		);
 	}
 }
+
+export default connect(mapStateToProps, null)(NavTopRight)

@@ -10,24 +10,39 @@ const mapStateToProps = state => {
 	};
 };
 const mapDispatchtoProps = dispatch => ({
-	removeFromCart: (index) => dispatch(removeItemFromCart(index))
+	removeFromCart: (pid) => dispatch(removeItemFromCart(pid))
 });
 
-export class Cart extends React.Component {
+class ButtonRemoveFromCart extends React.Component {
 	constructor(props) {
 		super(props);
-		this.onRemoveFromCartClickHandler = this.onRemoveFromCartClickHandler.bind(this);
 	}
-	onRemoveFromCartClickHandler = index => {
-		this.props.removeFromCart(index);
+
+	onRemoveFromCartClickHandler = () => {
+		this.props.onClick(this.props.itemId);
 		//this.getCartStateFromStore();
 	};
 
+	render() {
+		console.log(this.props);
+		return (
+			<div class="btn-remove-form-cart">
+				<button onClick={this.onRemoveFromCartClickHandler}>Rmove from Cart</button>
+			</div>
+		);
+	}
+}
+export class Cart extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+	
 	render() {
 		const items = [];
 		var totalPrice = 0;
 		const totalItem = this.props.cartItemList.length;
 	
+		//console.log(this.props);
 		for(var index = 0; index < totalItem; index++)
 		{
 			var value = {};
@@ -39,10 +54,10 @@ export class Cart extends React.Component {
 			items.push(<li>
 							<ul class="cart-item-ul-row" display="inline" list-stype="none">
 								<li><Link to={value.url}><img with="50" height="80" src={value.imgsrc} alt={value.imgsrc} /></Link></li>
-								<li><p>{value.designer}</p><p>{value.name}</p><p>{value.id}</p></li>
+								<li><p>{value.designer}</p><p>{value.name}</p><p>{value.id}</p><p>{value.size}</p></li>
 								<li>
 									<p>{value.price}</p>
-									<p><button onClick={this.onRemoveFromCartClickHandler}>Rmove from Cart</button></p>
+									<ButtonRemoveFromCart index={index} itemId={value.id} onClick={this.props.removeFromCart} />
 								</li>
 							</ul>
 						</li>);

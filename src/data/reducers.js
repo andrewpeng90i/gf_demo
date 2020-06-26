@@ -113,9 +113,9 @@ export const addItemToCart = (p_designer, p_name, p_size, p_id, p_price, p_imgsr
 						})
 };
 
-export const removeItemFromCart = idx => ({
-							type: CART_ADD_ITEM,
-							payload: idx
+export const removeItemFromCart = pid => ({
+							type: CART_DEL_ITEM,
+							payload: pid
 });
 
 export const updateCurrentBrowsingItem = (p_designer, p_name, p_size, p_id, p_price, p_imgsrc) => ({
@@ -179,9 +179,12 @@ export const cartReducer = (state = defaultState.cart, action) => {
 			return newState;
 
 		case CART_DEL_ITEM:
-			return Object.assign({}, state, {
-				cartItemList: state.cartItemList.filter(item => item !== action.payload)
+			const delState = Object.assign({}, state, {
+				cartItemList: state.cartItemList.filter(item => item.id !== action.payload)	
 			});
+
+			console.log(delState);
+			return delState;
 
 		case CART_UPDATE_CURRENT_ITEM:
 			return Object.assign({}, state, {
