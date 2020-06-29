@@ -1,6 +1,6 @@
 import React from "react";
 import NavTopRight, { NavTopLeft, NavTopMid } from "./NavBar"
-import "./Header.css";
+import "../css/Header.css";
 
 export default class Header extends React.Component {
 	render() {

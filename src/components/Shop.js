@@ -1,7 +1,7 @@
 import React from "react";
 import { store } from "../data/store";
 import { Link } from "react-router-dom";
-import "./Shop.css";
+import "../css/Shop.css";
 
 export default class Shop extends React.Component {
 	constructor(props) {

@@ -19,7 +19,7 @@ class ButtonRemoveFromCart extends React.Component {
 	}
 
 	onRemoveFromCartClickHandler = () => {
-		this.props.onClick(this.props.itemId);
+		this.props.onClick(this.props.index);
 	};
 
 	render() {

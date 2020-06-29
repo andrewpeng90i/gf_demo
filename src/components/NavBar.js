@@ -4,7 +4,7 @@ import { getAllItemFromCart } from "../data/reducers";
 import { Link } from "react-router-dom";
 import { store } from "../data/store";
 
-import "./NavBar.css";
+import "../css/NavBar.css";
 
 export class NavTopLeft extends React.Component {
 	render() {
