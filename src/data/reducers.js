@@ -98,7 +98,6 @@ const defaultState = {
 };
 
 export const addItemToCart = (p_designer, p_name, p_size, p_id, p_price, p_imgsrc, p_url) => {
-						//console.log("addItemToCart");
 						return ({
 							type: CART_ADD_ITEM,
 							payload: {
@@ -147,7 +146,6 @@ export const getProducts = (p_gender, p_designer, p_category, p_type, p_id) => (
 });
 
 export const productReducer = (state = defaultState.products, action) => {
-	//console.log(action.type, action.payload);
 	switch(action.type) {
 		case MAIN_GET_ALL_PRODUCTS:
 			const filter = {};

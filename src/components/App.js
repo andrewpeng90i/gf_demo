@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Header";
 import Main from "./Main";
-//import Footer from "./Footer";
 import { Provider } from "react-redux";
 import { store } from "../data/store";
 import { BrowserRouter as Router, Route} from "react-router-dom";
@@ -11,7 +10,6 @@ class DebugRouter extends Router {
     super(props);
     console.log('initial history is: ', JSON.stringify(this.history, null,2))
     this.history.listen((location, action)=> { 
-      //console.log('The current URL is ${location.pathname}${location.search}${location.hash}');
       console.log('The last navigation action was ${action}', JSON.stringify(this.history, null,2));
     });
   }

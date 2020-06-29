@@ -30,9 +30,6 @@ export class Product extends React.Component {
 		};
 		this.onChooseSizeChangeHandler = this.onChooseSizeChangeHandler.bind(this);
 		this.onAddToCartClickHandler = this.onAddToCartClickHandler.bind(this);
-		//this.addToCart = this.addToCart.bind(this);
-		
-		//console.log(this.props.addToCart);
 	}
 
 	onChooseSizeChangeHandler = (e) => {
@@ -40,7 +37,6 @@ export class Product extends React.Component {
 	};
 
 	onAddToCartClickHandler = (e) => {
-		//console.log(this.props);
 		console.log(this.state);
 		e.preventDefault();
 		this.props.addToCart(this.state.designer, this.state.name, this.state.selectedSize,
@@ -55,7 +51,6 @@ export class Product extends React.Component {
 			id: this.props.id
 		};
 
-		//console.log(params);
 		const stateProductList = store.getState().productReducer.allItemList;
 		const newState = {};
 		const filter = {};
@@ -66,7 +61,6 @@ export class Product extends React.Component {
 
 		var product = stateProductList.filter( p => {
 											for (const key in filter) {
-													//console.log(key, p[key], filter[key]);
 													if(p[key] === undefined || 
 														filter[key] !== p[key])
 														return false;
@@ -75,7 +69,6 @@ export class Product extends React.Component {
 											});
 		product = product[0];
 
-		//console.log(product);
 		newState["name"] = product["name"];
 		newState["designer"] = product["designer"];
 		newState["sizes"] = product["size"];

@@ -19,61 +19,73 @@ export default class Main extends React.Component {
 		console.log(pathname, designer, productName, productId);
 
 		var className = "";
-		if(pathname === "/en-us" || pathname === "/zh-cn" || pathname === "/") {
-			className = "home";
-		}
-		else if(pathname === "/cart") {
-			className = "cart-detail";
-		}
+		switch(pathname) {
+			
+			case "/en-us":
+			case "/zh-cn":
+			case "/":
+				className = "home";
+				break;
 
-		else if (pathname === "/men") {
-			className = "shop-men";
+			case "/cart":
+				className = "cart-detail";
+				break;
+
+			case "/men":
+				className = "shop-men";
+				break;
+
+			case "/women":
+				className = "shop-women";
+				break;
+
+			default:
+				break;
 		}
-		else if (pathname === "/women") {
-			className = "shop-women";
-		}
-		else if (product !== undefined && designer !== undefined && 
+		if (product !== undefined && designer !== undefined && 
 					productName !== undefined && productId !== undefined) {
-			className = "prodcut-detail";
+			className = "product-detail";
 		}
 
 		console.log(className);
 
-		if(className === "home") {
-			return (
-				<div class="main-container">
-					<Home class={className} />
-				</div>
-			);
-		}
-		else if(className === "shop-men" ) {
-			return (
-				<div class="main-container">
-					<Shop class={className} gender="men" designer="" category="" name="" />
-				</div>
-			);
-		}
-		else if(className === "shop-women") {
-			return (
-				<div class="main-container">
-					<Shop class={className} gender="women" designer="" category="" name="" />
-				</div>
-			);
-		}
-		else if(className === "cart-detail") {
-			return (
-				<div class="main-container">
-					<Cart class={className} />
-				</div>
-			);
-		}
-		else if(className === "prodcut-detail") {
-			return (
-				<div class="main-container">
-					<Product class={className} gender={gender} product={product} designer={designer} 
-												name={productName} id={productId} / >
-				</div>
-			);
+		switch(className) {
+
+			case "home": 
+				return (
+					<div class="main-container">
+						<Home class={className} />
+					</div>
+				);
+
+			case "shop-men": 
+				return (
+					<div class="main-container">
+						<Shop class={className} gender="men" designer="" category="" name="" />
+					</div>
+				);
+	
+			case "shop-women":
+				return (
+					<div class="main-container">
+						<Shop class={className} gender="women" designer="" category="" name="" />
+					</div>
+				);
+
+			case "cart-detail":
+				return (
+					<div class="main-container">
+						<Cart class={className} />
+					</div>
+				);
+
+			case "product-detail":
+				return (
+					<div class="main-container">
+						<Product class={className} gender={gender} product={product} designer={designer} 
+													name={productName} id={productId} / >
+					</div>
+				);
 		}
 	}
 }

@@ -20,7 +20,6 @@ class ButtonRemoveFromCart extends React.Component {
 
 	onRemoveFromCartClickHandler = () => {
 		this.props.onClick(this.props.itemId);
-		//this.getCartStateFromStore();
 	};
 
 	render() {
@@ -42,14 +41,12 @@ export class Cart extends React.Component {
 		var totalPrice = 0;
 		const totalItem = this.props.cartItemList.length;
 	
-		//console.log(this.props);
 		for(var index = 0; index < totalItem; index++)
 		{
 			var value = {};
 			for(const key in this.props.cartItemList[index])
 				value[key] = this.props.cartItemList[index][key];
 			
-			//console.log(value);
 			totalPrice += value.price;
 			items.push(<li>
 							<ul class="cart-item-ul-row" display="inline" list-stype="none">
@@ -61,7 +58,6 @@ export class Cart extends React.Component {
 								</li>
 							</ul>
 						</li>);
-			//items.push(<li><Link to={url}>{value.name}</Link></li>);
 		}
 
 		return (
